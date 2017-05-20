@@ -16,6 +16,7 @@
             <MenuItem Header="File">
                 <MenuItem Header="Open image" Click="ShowOpenImageDialog" />
                 <MenuItem Header="Open folder" Click="ShowOpenFolderDialog" />
+                <Separator />
                 <MenuItem Header="Exit" Click="Exit" />
             </MenuItem>
             <MenuItem Header="About" Click="DisplayAbout" />
