@@ -25,11 +25,11 @@
                 <ColumnDefinition Width="4*" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="15" />
+                <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
-            <ProgressBar Grid.Row="0" Grid.Column="1" />
+            <Slider Grid.Row="0" Grid.Column="1" Value="{Binding ThumbnailSize}" Minimum="50" Maximum="250" />
 
             <Border Grid.Column="0" Grid.Row="1" Margin="5" BorderBrush="Black" BorderThickness="1">
                 <StackPanel Background="#FF8b9a59">
