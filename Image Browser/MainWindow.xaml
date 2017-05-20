@@ -80,12 +80,26 @@
             
 
             <Border Grid.Row="1" Grid.Column="1" Margin="5" BorderBrush="Black" BorderThickness="1">
-                <ListView ItemsSource="{Binding FolderContents}">
+                <ListView ItemsSource="{Binding FolderContents}"  ScrollViewer.HorizontalScrollBarVisibility="Disabled" >
+                    <ListView.Resources>
+                        <local:PathToFileNameConverter x:Key="PathToFileNameConverter" />
+                    </ListView.Resources>
                     <ListView.ItemsPanel>
                         <ItemsPanelTemplate>
-                            <WrapPanel Background="#FF49A8DE" Orientation="Horizontal" />
+                            <WrapPanel Background="#FF49A8DE" Orientation="Horizontal"
+                                       MaxWidth="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=ListView}}" />
                         </ItemsPanelTemplate>
                     </ListView.ItemsPanel>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Border MouseLeftButtonDown="OpenImageInSeparateWindow" BorderBrush="Black" BorderThickness="1" Background="White" Margin="10">
+                                <StackPanel Margin="5">
+                                    <Image Source="{Binding}" Height="{Binding ThumbnailSize, RelativeSource={RelativeSource AncestorType=Window}}" Margin="0 5" />
+                                    <TextBlock Text="{Binding Converter={StaticResource PathToFileNameConverter}}" Margin="0 5" />
+                                </StackPanel>
+                            </Border>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
                 </ListView>
             </Border>
         </Grid>

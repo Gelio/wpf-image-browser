@@ -19,6 +19,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Image_Browser.Annotations;
+using Control = System.Windows.Controls.Control;
+using ListViewItem = System.Windows.Controls.ListViewItem;
 using MessageBox = System.Windows.MessageBox;
 using OpenFileDialog = Microsoft.Win32.OpenFileDialog;
 
@@ -29,7 +31,7 @@ namespace Image_Browser
     /// </summary>
     public partial class MainWindow : Window, INotifyPropertyChanged
     {
-        private int _thumbnailSize = 50;
+        private int _thumbnailSize = 100;
         private ObservableCollection<string> _folderContents = new ObservableCollection<string>();
 
         public int ThumbnailSize
@@ -117,6 +119,15 @@ namespace Image_Browser
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        private void OpenImageInSeparateWindow(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ClickCount < 2)
+                return;
+
+            Border item = sender as Border;
+            ShowImageWindow((string)item.DataContext);
         }
     }
 }
