@@ -1,0 +1,208 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+    <title>WPF 2 - Image Browser</title>
+    <meta http-equiv="Content-type" content="text/html; charset=UTF-8">
+</head>
+<body>
+    <h4>WPF 2 - część pierwsza</h4>
+    <p>Image browser</p>
+    <ul>
+        <li><a href="lab.exe">Aplikacja przykładowa</a></li>
+        <li>
+            Opis:
+            <ul>
+                <li>zadanie polega na napisaniu prostej aplikacji umożliwiającej przeglądanie folderów ze zdjęciami</li>
+                <li>użytkownik może otwierać cały folder lub wyświetlać pojedyncze zdjęcia</li>
+            </ul>
+        </li>
+        <li>
+            Wymagania:
+            <ul>
+                <li>
+                    Główne okno:
+                    <ul>
+                        <li>minimalny rozmiar 500 x 500, rozmiar początkowy 800 x 600</li>
+                        <li>na górze okna pasek menu</li>
+                        <li>pozostałą część okna wypełnia slider oraz część główna, w której wyświetlane będą miniaturki obrazków</li>
+                        <li>napis "Image Browser" na pasku tytułowym okna</li>
+                        <li>okno pojawia się na środku ekranu</li>
+                        <li>kolor tła: #FFC9B1B1</li>
+                    </ul>
+                </li>
+                <li>
+                    Górne menu:
+                    <ul>
+                        <li>
+                        	'File' zawiera:
+                            <ul>
+                            	<li>'Open image' - wyświetla okienko dialogowe, umożliwiające wybór obrazka w jednym z trzech formatów (.jpg, .gif, .png) i otwiera nowe okno z wybranym obrazkiem</li>
+                                <li>'Open folder' - wyświetla okienko dialogowe, umożliwiające wybór folderu z obrazkami</li>
+                                <li>'Exit' - zamyka aplikację, oddzielony separatorem od wcześniejszych
+                            </ul>
+                        </li>
+                        <li>'About' - wyświetla MessageBox z krótką informacją o programie</li>
+                    </ul>
+                </li>
+                <li>
+                    Główna część programu:
+                    <ul>
+	                    <li>okno podzielone na dwie części: prawą (kolor tła: #FF49A8DE) i lewą (kolor tła: #FF8b9a59)</li>
+                        <li>w lewej części znajduje się menu z wystylizowanymi przyciskami</li>
+                        <li>wszystkie przyciski mają eliptyczny kształt, przezroczyste brzegi oraz zmieniają wygląd przy najechaniu myszą i wciśnięciu</li>
+						<li>kolory użyte dla przycisków to: biały, cyjan i magenta</li>
+                        <li>w prawej części znajduje się slider i odpowiednio wystylizowana lista z miniaturkami obrazków znajdujących się w wybranym przez nas folderze</li>
+                    	<li>slider umożliwia dynamiczną modyfikację rozmiaru miniaturek obrazków (50 - 250) - musi zostać użyte bindowanie</li>
+                        <li>każda miniaturka zawiera podgląd obrazka, którego dotyczy, nazwę pliku oraz posiada dodany efekt cienia występujący z prawej strony i z dołu</li>
+                        <li>rozmiar obrazka w miniaturkach może być zmieniany przy pomocy slidera od 50 do 250 px</li>
+                        <li>podwójne kliknięcie w dowolną miniaturkę powoduje otwarcie nowego okna z obrazkiem, którego tytuł jest nazwą otwartego pliku</li>
+                        <li>obrazek otwarty w nowym oknie powinien zachowywać oryginalne wymiary, a okno nie powinno dać się skalować</li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+        <li>
+            Uwagi:
+            <ul>
+            	<li>aplikacja jest odporna na skalowanie okna, kontrolki dostosowują się do zmian rozmiaru okna aplikacji</li>
+                <li>lista z miniaturkami powinna wyświetlać scrollbar w przypadku jej przepełnienia</li>
+                <li>w razie niejasności program musi być zgodny z zachowaniem i wyglądem aplikacji przykładowej (z wyjątkiem potencjalnych bugów)</li>
+            </ul>
+        </li>
+        <li>
+            Wskazówki:
+            <ul>
+	            <li>INotifyPropertyChanged</li>
+                <li>ListView, ListView.ItemTemplate, DataTemplate</li>
+                <li>ListView.ItemsPanel, WrapPanel</li>
+                <li>Border.Effect</li>
+                <li>FolderBrowserDialog (System.Windows.Forms)</li>
+                <li>ControlTemplate, TemplateBinding</li>
+                <li>Trigger, IsMouseOver, IsPressed</li>
+            </ul>
+        </li>
+        <li>
+            Punktacja:
+            <ul>
+                <li>wystylizowane menu po lewej stronie + poprawne otwieranie obrazków w nowym oknie + wyświetlanie zawartości wybranego folderu w dowolny sposób, który umożliwia otwarcie obrazka poprzez podwójne kliknięcie - 4 punkty</li>
+                <li>górne menu  + wyświetlanie obrazków znajdujących się w wybranym folderze (ścieżka może być zahardcodowana) w postaci odpowiednio wystylizowanej listy miniaturek (jak w aplikacji przykładowej) + możliwość zmiany rozmiaru miniaturek przy pomocy slidera- 4 punkty</li>
+            </ul>
+        </li>
+    </ul>
+    <h4>WPF 2 - część druga</h4>
+    <ul>
+        <li><a href="home/home.exe">Aplikacja przykładowa</a></li>
+        <li>
+            Wymagania:
+            <ul>
+                <li>
+                    Główne okno:
+                    <ul>
+                    	<li>główne okno zostało podzielona na dwie części, których szerokość można zmieniać przy pomocy splittera</li>
+                        <li>w pierwszej części znajduje się: menu z wystylizowanymi buttonami z części laboratoryjnej, checkbox umożliwiający pokazywanie/ukrywanie drzewa partycji i katalogów, kontrolka wyświetlająca wszystkie partycje oraz pozwalająca na przeglądanie struktury katalogowej każdego dysku</li>
+                        <li>domyślnie drzewo katalogów jest wyświetlone, a checkbox zaznaczony</li>
+                        <li>po odznaczeniu checkboxa kontrolka z drzewem katalogów zanika (animacja po parametrze przezroczystości)</li>
+                        <li>po ponownym zaznaczeniu checkboxa kontrolka ponownie się pojawia (ponownie animacja)</li>
+                        <li>po kliknięciu w nazwę katalogu zostają wyświetlone miniaturki obrazków, które się w nim znajdują</li>
+                        <li>w drugiej części wyświetlane są miniaturki obrazków</li>
+                    </ul>
+                </li>
+                <li>
+                    Okno z obrazkiem:
+                    <ul>
+                    	<li>rozmiar otwieranego okna powinien być dostosowany do rozdzielczości ekranu i wymiarów obrazka, tzn. proporcje obrazka powinny być zachowane, ale okno w całości musi mieścić się na ekranie (należy wzorowac się na działaniu przykładowej aplikacji)</li>
+                        <li>okno zostało podzielone na 3 sekcje</li>
+                        <li>po prawej stronie znajduje się największa sekcja, w której wyświetlany jest wybrany obrazek</li>
+                        <li>po lewej stronie okna znajdują się dwie rozwijane sekcje</li>
+                        <li>pierwsza sekcja zawiera podstawowe informacje o obrazku, takie jak jego nazwa, wymiary i data utworzenia</li>
+                        <li>druga sekcja pozwala na wybór z rozwijanej listy pluginu oraz jego zastosowanie do obrazka</li>
+                        <li>każda sekcja powinna mieć inny kolor tła i obramowania</li>
+                    </ul>
+                </li>
+                <li>
+                    Menu kontekstowe:
+                    <ul>
+                        <li>wyświetla się po kliknięciu prawym przyciskiem myszy na obrazku w oknie z obrazkiem</li>
+                        <li>menu zawiera:
+                        	<ul>
+                            	<li>'Save' - pozwala na zapisanie obrazka w jednym z następujących formatów: png, jpg, bmp.</li>
+                                <li>'Reset' - przywraca oryginalny obrazek (do stanu przed zastosowaniem jakichkolwiek pluginów)</li>
+                                <li>'Exit' - zamyka okno z obrazkiem</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    System pluginów:
+                    <ul>
+                        <li>system pluginów powinien umożliwiać dodawanie nowych funkcjonalności bez potrzeby ponownej kompilacji aplikacji, poprzez wrzucenie nowej dll-ki do katalogu z plikiem exe</li>
+						<li>każdy plugin powinien być zaimplementowany jako biblioteka (kompilowana do pliku dll) z klasą implementującą odpowiedni interfejs</li>
+                        <li>interfejs systemu pluginów powinien zostać zaimplementowany w sposób umożliwiający łatwe udostęponienie go innym programistom</li>
+                        <li>należy zaimplementować przynajmniej dwa pluginy pozwalające na obracanie obrazka (obroty o 90 i 180 stopni)</li>
+                        <li>poniżej interfejs, który został użyty w aplikacji przykładowej i którego należy użyć przy implementacji zadania, a także sposób implementacji przykładowego pluginu:
+	                        <pre>
+public interface IPlugin
+{
+    string Name { get; }
+    BitmapImage Do(BitmapImage image);
+}
+                            </pre>
+                            <pre>
+public class ExamplePlugin : IPlugin
+{
+    public string Name
+    {
+        get
+        {
+            return "Name of Example Plugin";
+        }
+    }
+
+    public BitmapImage Do(BitmapImage bmpOriginal)
+    {
+        var bmp = DoSomethingWithImage(bmpOriginal);
+
+        return bmp;
+    }
+}
+                            </pre>
+                        </li>
+                        <li>poprawnie zaimplementowany system pluginów powinien umożliwiać wymianę dll-kami i ich poprawne działanie</li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+        <li>
+            Wskazówki:
+            <ul>
+                <li>TreeView, TreeViewItem</li>
+                <li>GridSplitter</li>
+                <li>Environment.GetLogicalDrives(), Directory.GetDirectories(), DirectoryInfo</li>
+                <li>DoubleAnimation, Opacity</li>
+                <li>Expander</li>
+                <li>Image.ContextMenu</li>
+                <li>Label.ContentStringFormat</li>
+                <li>BitmapImage</li>
+                <li>SystemParameters.PrimaryScreenWidth, SystemParameters.PrimaryScreenHeight</li>
+                <li>Build Path w Project properties (przyspiesza pisanie i testowanie kodu)</li>
+            </ul>
+        </li>
+    </ul>
+
+    <ul>
+        <li>
+            Punktacja:
+            <ul>
+                <li>implementacja drzewa katalogów - 3 punkty</li>
+                <li>możliwość zmiany szerokości kontrolek w głównym oknie - 0.5 punkta</li>
+                <li>poprawne dostosowywanie rozmiarów nowego okna z obrazkiem - 1 punkt</li>
+                <li>wyświetlanie informacji o obrazku w rowijanym oknie - 1 punkt</li>
+                <li>implementacja menu kontekstowego - 1 punkt</li>
+                <li>animowane pokazywanie i ukrywanie kontrolki z drzewem katalogów w zależności od zaznaczenia checkboxa - 1.5 punkta</li>
+                <li>implementacja systemu pluginów (bez systemu po 0.5 punkta za plugin) - 4 punkty</li>
+            </ul>
+        </li>
+    </ul>
+
+
+
+</body></html>
