@@ -24,5 +24,25 @@ namespace Image_Browser
         {
             InitializeComponent();
         }
+
+        private void OpenImage(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void OpenFolder(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void Exit(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
+
+        private void DisplayAbout(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show(this, "Simple image browser", "About", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
     }
 }

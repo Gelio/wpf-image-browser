@@ -5,8 +5,83 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Image_Browser"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
-    <Grid>
-        
-    </Grid>
+        Title="Image Browser" 
+        Height="600" Width="800"
+        MinHeight="500" MinWidth="500"
+        WindowStartupLocation="CenterScreen"
+        Background="#FFC9B1B1">
+    <DockPanel>
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="File">
+                <MenuItem Header="Open image" Click="OpenImage" />
+                <MenuItem Header="Open folder" Click="OpenFolder" />
+                <MenuItem Header="Exit" Click="Exit" />
+            </MenuItem>
+            <MenuItem Header="About" Click="DisplayAbout" />
+        </Menu>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="4*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="15" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <ProgressBar Grid.Row="0" Grid.Column="1" />
+
+            <Border Grid.Column="0" Grid.Row="1" Margin="5" BorderBrush="Black" BorderThickness="1">
+                <StackPanel Background="#FF8b9a59">
+                    <StackPanel.Resources>
+                        <Style TargetType="Button">
+                            <Setter Property="Height" Value="70" />
+                            <Setter Property="BorderThickness" Value="0" />
+                            <Setter Property="Background" Value="Transparent" />
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="Button">
+                                        <Grid>
+                                            <Ellipse Fill="White" Height="50" Width="80">
+                                                <Ellipse.Effect>
+                                                    <BlurEffect Radius="30" />
+                                                </Ellipse.Effect>
+                                            </Ellipse>
+
+                                            <Ellipse Fill="Transparent" Height="30" Width="30" Name="InnerEllipse">
+                                                <Ellipse.Effect>
+                                                    <BlurEffect Radius="20" />
+                                                </Ellipse.Effect>
+                                            </Ellipse>
+
+                                            <ContentPresenter HorizontalAlignment="Center"  VerticalAlignment="Center" RecognizesAccessKey="True"/>
+                                        </Grid>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter TargetName="InnerEllipse" Property="Fill" Value="Magenta" />
+                                            </Trigger>
+                                            <Trigger Property="IsPressed" Value="True">
+                                                <Setter TargetName="InnerEllipse" Property="Fill" Value="Cyan" />
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </StackPanel.Resources>
+
+                    <Button Click="OpenImage" Width="100">Open image</Button>
+                    <Button Click="OpenFolder" Width="100">Open folder</Button>
+                    <Button Click="Exit" Width="100">Exit</Button>
+                </StackPanel>
+            </Border>
+            
+
+            <Border Grid.Row="1" Grid.Column="1" Margin="5" BorderBrush="Black" BorderThickness="1">
+                <WrapPanel Background="#FF49A8DE">
+
+                </WrapPanel>
+            </Border>
+        </Grid>
+    </DockPanel>
 </Window>
