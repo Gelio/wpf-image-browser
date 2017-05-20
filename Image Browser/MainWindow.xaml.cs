@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -27,6 +30,7 @@ namespace Image_Browser
     public partial class MainWindow : Window, INotifyPropertyChanged
     {
         private int _thumbnailSize = 50;
+        private ObservableCollection<string> _folderContents = new ObservableCollection<string>();
 
         public int ThumbnailSize
         {
@@ -39,10 +43,20 @@ namespace Image_Browser
             }
         }
 
+        public ObservableCollection<string> FolderContents
+        {
+            get { return _folderContents; }
+            set
+            {
+                if (Equals(value, _folderContents)) return;
+                _folderContents = value;
+                OnPropertyChanged();
+            }
+        }
+
         public MainWindow()
         {
             InitializeComponent();
-            DataContext = this;
         }
 
         private void ShowOpenImageDialog(object sender, RoutedEventArgs e)
@@ -53,7 +67,7 @@ namespace Image_Browser
             if (!result.HasValue || !result.Value)
                 return;
 
-            // TODO
+            ShowImageWindow(dialog.FileName);
         }
 
         private void ShowOpenFolderDialog(object sender, RoutedEventArgs e)
@@ -63,7 +77,28 @@ namespace Image_Browser
             if (result != System.Windows.Forms.DialogResult.OK)
                 return;
 
-            // TODO
+            FolderContents.Clear();
+            try
+            {
+                foreach (string filePath in Directory.EnumerateFiles(dialog.SelectedPath).Where(IsFilePathImage))
+                    FolderContents.Add(filePath);
+            }
+            catch (Exception error)
+            {
+                MessageBox.Show(this, "Error: " + error.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private bool IsFilePathImage(string filePath)
+        {
+            Match m = Regex.Match(filePath, @"(\.jpe?g|\.png|\.gif)$");
+            return m.Success;
+        }
+
+        private void ShowImageWindow(string filePath)
+        {
+            ImageWindow imageWindow = new ImageWindow(filePath);
+            imageWindow.Show();
         }
 
         private void Exit(object sender, RoutedEventArgs e)

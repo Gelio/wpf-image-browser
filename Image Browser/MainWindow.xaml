@@ -7,6 +7,7 @@
         mc:Ignorable="d"
         Title="Image Browser" 
         Height="600" Width="800"
+        DataContext="{Binding RelativeSource={RelativeSource Self}}"
         MinHeight="500" MinWidth="500"
         WindowStartupLocation="CenterScreen"
         Background="#FFC9B1B1">
@@ -78,9 +79,13 @@
             
 
             <Border Grid.Row="1" Grid.Column="1" Margin="5" BorderBrush="Black" BorderThickness="1">
-                <WrapPanel Background="#FF49A8DE">
-
-                </WrapPanel>
+                <ListView ItemsSource="{Binding FolderContents}">
+                    <ListView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel Background="#FF49A8DE" Orientation="Horizontal" />
+                        </ItemsPanelTemplate>
+                    </ListView.ItemsPanel>
+                </ListView>
             </Border>
         </Grid>
     </DockPanel>
