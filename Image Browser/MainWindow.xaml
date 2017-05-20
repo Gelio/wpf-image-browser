@@ -13,8 +13,8 @@
     <DockPanel>
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="File">
-                <MenuItem Header="Open image" Click="OpenImage" />
-                <MenuItem Header="Open folder" Click="OpenFolder" />
+                <MenuItem Header="Open image" Click="ShowOpenImageDialog" />
+                <MenuItem Header="Open folder" Click="ShowOpenFolderDialog" />
                 <MenuItem Header="Exit" Click="Exit" />
             </MenuItem>
             <MenuItem Header="About" Click="DisplayAbout" />
@@ -70,8 +70,8 @@
                         </Style>
                     </StackPanel.Resources>
 
-                    <Button Click="OpenImage" Width="100">Open image</Button>
-                    <Button Click="OpenFolder" Width="100">Open folder</Button>
+                    <Button Click="ShowOpenImageDialog" Width="100">Open image</Button>
+                    <Button Click="ShowOpenFolderDialog" Width="100">Open folder</Button>
                     <Button Click="Exit" Width="100">Exit</Button>
                 </StackPanel>
             </Border>

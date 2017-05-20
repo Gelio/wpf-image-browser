@@ -9,12 +9,15 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
+using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Image_Browser.Annotations;
+using MessageBox = System.Windows.MessageBox;
+using OpenFileDialog = Microsoft.Win32.OpenFileDialog;
 
 namespace Image_Browser
 {
@@ -42,14 +45,25 @@ namespace Image_Browser
             DataContext = this;
         }
 
-        private void OpenImage(object sender, RoutedEventArgs e)
+        private void ShowOpenImageDialog(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            OpenFileDialog dialog = new OpenFileDialog();
+            dialog.Filter = "Image files (*.jpg, *.jpeg, *.bmp, *.png)|*.jpg;*.jpeg;*.bmp;*.png";
+            bool? result = dialog.ShowDialog();
+            if (!result.HasValue || !result.Value)
+                return;
+
+            // TODO
         }
 
-        private void OpenFolder(object sender, RoutedEventArgs e)
+        private void ShowOpenFolderDialog(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            var dialog = new System.Windows.Forms.FolderBrowserDialog();
+            DialogResult result = dialog.ShowDialog();
+            if (result != System.Windows.Forms.DialogResult.OK)
+                return;
+
+            // TODO
         }
 
         private void Exit(object sender, RoutedEventArgs e)
